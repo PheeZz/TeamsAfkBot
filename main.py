@@ -14,11 +14,13 @@ tmpPath = open('teamsApp.txt')
 teamsAppPath = tmpPath.read()
 print(googlePath, yandexPath, edgePath, teamsAppPath, sep='\n')
 
-os.startfile(googlePath)  # exec apps
-os.startfile(yandexPath)
-os.startfile(edgePath)
-#os.startfile(teamsAppPath)
-webbr.register('Chrome', None, webbr.BackgroundBrowser(googlePath))  # register browsers names as path
+#os.startfile(googlePath)  # exec apps
+#os.startfile(yandexPath)
+#os.startfile(edgePath)
+# os.startfile(teamsAppPath)            NOW DON'T NEED IT because realised by webbrowser lib
+
+# register browsers names as path
+webbr.register('Chrome', None, webbr.BackgroundBrowser(googlePath))
 webbr.register('Yandex', None, webbr.BackgroundBrowser(yandexPath))
 webbr.register('Edge', None, webbr.BackgroundBrowser(edgePath))
 
