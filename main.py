@@ -4,13 +4,13 @@ import cv2  # работа с изображениями
 import os  # запуск приложений
 import webbrowser as webbr
 
-tmpPath = open('google.txt')  # import app path from txt files
+tmpPath = open('paths/chrome.txt')  # import app path from txt files
 googlePath = tmpPath.read()
-tmpPath = open('yandex.txt')
+tmpPath = open('paths/yandex.txt')
 yandexPath = tmpPath.read()
-tmpPath = open('msEdge.txt')
+tmpPath = open('paths/msEdge.txt')
 edgePath = tmpPath.read()
-tmpPath = open('teamsApp.txt')
+tmpPath = open('paths/teamsApp.txt')
 teamsAppPath = tmpPath.read()
 print(googlePath, yandexPath, edgePath, teamsAppPath, sep='\n')
 
