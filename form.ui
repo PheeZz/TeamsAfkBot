@@ -6,12 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>339</width>
+    <height>240</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>339</width>
+    <height>240</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>339</width>
+    <height>240</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="enabled">
@@ -21,8 +45,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>401</width>
-     <height>301</height>
+     <width>341</width>
+     <height>241</height>
     </rect>
    </property>
    <property name="font">
@@ -33,10 +57,10 @@
     </font>
    </property>
    <property name="autoFillBackground">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -45,8 +69,8 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>20</y>
+       <x>70</x>
+       <y>40</y>
        <width>47</width>
        <height>13</height>
       </rect>
@@ -63,11 +87,11 @@
       <string>Status: </string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="runBtn">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>50</y>
+       <x>70</x>
+       <y>90</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -85,15 +109,37 @@
       <string>Run bot</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="stopBtn">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>90</y>
+       <width>91</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Lucida Sans</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Stop</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
      <string>Settings</string>
     </attribute>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="chromeLabel">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>40</x>
        <y>10</y>
        <width>71</width>
        <height>16</height>
@@ -103,37 +149,13 @@
       <string>Chrome path</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QToolButton" name="chrome_toolBtn">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>241</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="cursor" stdset="0">
-      <cursorShape>IBeamCursor</cursorShape>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="toolButton">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
+       <x>290</x>
        <y>30</y>
        <width>25</width>
-       <height>19</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="text">
@@ -143,37 +165,13 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit_2">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QToolButton" name="edge_toolBtn">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>241</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="cursor" stdset="0">
-      <cursorShape>IBeamCursor</cursorShape>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="toolButton_2">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
+       <x>290</x>
        <y>80</y>
        <width>25</width>
-       <height>19</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="text">
@@ -183,10 +181,10 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="edgeLabel">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>40</x>
        <y>60</y>
        <width>71</width>
        <height>16</height>
@@ -196,13 +194,13 @@
       <string>Edge path</string>
      </property>
     </widget>
-    <widget class="QToolButton" name="toolButton_3">
+    <widget class="QToolButton" name="yandex_toolBtn">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>290</x>
        <y>130</y>
        <width>25</width>
-       <height>19</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="text">
@@ -212,34 +210,10 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit_3">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QLabel" name="yandexLabel">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>130</y>
-       <width>241</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="cursor" stdset="0">
-      <cursorShape>IBeamCursor</cursorShape>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
+       <x>40</x>
        <y>110</y>
        <width>71</width>
        <height>16</height>
@@ -249,13 +223,13 @@
       <string>Yandex path</string>
      </property>
     </widget>
-    <widget class="QToolButton" name="toolButton_4">
+    <widget class="QToolButton" name="teams_toolBtn">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>290</x>
        <y>180</y>
        <width>25</width>
-       <height>19</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="text">
@@ -265,34 +239,10 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit_4">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QLabel" name="teamsLabel">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>180</y>
-       <width>241</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="cursor" stdset="0">
-      <cursorShape>IBeamCursor</cursorShape>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
+       <x>40</x>
        <y>160</y>
        <width>71</width>
        <height>16</height>
@@ -300,6 +250,98 @@
      </property>
      <property name="text">
       <string>Teams path</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="chrome_path_line">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>30</y>
+       <width>241</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="edge_path_line">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>80</y>
+       <width>241</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="yandex_path_line">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>130</y>
+       <width>241</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="teams_path_line">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>180</y>
+       <width>241</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="google_checkBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="edge_checkBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="yandex_checkBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="teams_checkBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>180</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

@@ -9,19 +9,18 @@ import cv2  # работа с изображениями
 import os  # запуск приложений
 import webbrowser as webbr
 
-from pprint import pprint
-
-import pickle  # to save\read token file
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.errors import HttpError
+from pprint import pp, pprint
+import yaml
 
 import datetime
 import time
 import os.path
+from multiprocessing import Process
+from requests import get
 
 
 def getDateTime(date):
+    # разбиваем строку date в отдельные значения даты (день\месяц\год\часы\минуты)
     iterator = 0
     str_year, str_month, str_day, str_hours, str_minutes = "", "", "", "", ""
     while iterator < 4:
@@ -42,14 +41,63 @@ def getDateTime(date):
 def timeNow(): return datetime.datetime.utcnow().isoformat()
 
 
-tmpPath = open('paths/chrome.txt')  # import app path from txt files
-googlePath = tmpPath.read()
-tmpPath = open('paths/yandex.txt')
-yandexPath = tmpPath.read()
-tmpPath = open('paths/msEdge.txt')
-edgePath = tmpPath.read()
-tmpPath = open('paths/teamsApp.txt')
-teamsAppPath = tmpPath.read()
+def isoToWeekday(digit):
+    # перевод "цифрового" представления о текущем дне недели в текстовый
+    # для сравения с инфой в shedule.yml
+    if digit == 1:
+        return 'Monday'
+    elif digit == 2:
+        return 'Tuesday'
+    elif digit == 3:
+        return 'Wednesday'
+    elif digit == 4:
+        return 'Thursday'
+    elif digit == 5:
+        return 'Friday'
+    elif digit == 6:
+        return 'Saturday'
+    elif digit == 7:
+        return 'Sunday'
+
+
+def isNowBetweenTime(time):
+    startHour = int(time[0]+time[1])
+    startMinutes = int(time[3]+time[4])
+    endHour = int(time[6]+time[7])
+    endMinutes = int(time[9]+time[10])
+
+    now = str(datetime.datetime.now().time())
+    nowHour = int(now[0]+now[1])
+    nowMinutes = int(now[3]+now[4])
+
+    startTime = datetime.time(startHour, startMinutes)
+    endTime = datetime.time(endHour, endMinutes)
+    nowTime = datetime.time(nowHour, nowMinutes)
+
+    if startTime <= nowTime <= endTime:
+        return True
+    else:
+        return False
+
+
+def openLessonBrowser(browser, link): webbr.get(browser).open_new_tab(link)
+
+""" webbr.get('Chrome').open_new_tab('https://vk.com')
+webbr.get('Yandex').open_new_tab('https://vk.com')
+webbr.get('Edge').open_new_tab('https://vk.com') """
+
+# import app path from txt files
+with open('paths/chrome.txt', 'r') as pathFile:
+    googlePath = pathFile.read()
+
+with open('paths/yandex.txt', 'r') as pathFile:
+    yandexPath = pathFile.read()
+
+with open('paths/msEdge.txt', 'r') as pathFile:
+    edgePath = pathFile.read()
+
+with open('paths/teamsApp.txt', 'r') as pathFile:
+    teamsAppPath = pathFile.read()
 
 # os.startfile(teamsAppPath)
 # register browsers names as path
@@ -57,36 +105,23 @@ webbr.register('Chrome', None, webbr.BackgroundBrowser(googlePath))
 webbr.register('Yandex', None, webbr.BackgroundBrowser(yandexPath))
 webbr.register('Edge', None, webbr.BackgroundBrowser(edgePath))
 
-""" webbr.get('Chrome').open_new_tab('https://vk.com')
-webbr.get('Yandex').open_new_tab('https://vk.com')
-webbr.get('Edge').open_new_tab('https://vk.com') """
-
-scopes = ['https://www.googleapis.com/auth/calendar.readonly']
-flow = InstalledAppFlow.from_client_secrets_file(
-    "client_secret.json", scopes=scopes)
-credentials = pickle.load(open("token.pkl", "rb"))
-
-try:
-    service = build("calendar", "v3", credentials=credentials)
-except HttpError as error:
-    print('An error occurred: %s' % error)
-
-    # засунуть в рефреш на каждую минуту
-now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-currentCalendar = service.calendarList().list().execute()
-calendar_id = currentCalendar['items'][0]['id']
-events_result = service.events().list(calendarId=calendar_id, timeMin=now,
-                                      maxResults=1, singleEvents=True,
-                                      orderBy='startTime').execute()
-
-currentClass = events_result['items'][0]['summary']  # геттер "названия" пары
-# геттер начала пары
-eventStartTime = events_result['items'][0]['start']['dateTime']
-link = events_result['items'][0]['location']  # геттер ссылки на пару
-arr = np.asarray(getDateTime(eventStartTime)
-                 )  # переводим тип turple в массив int'ов с помощью numpy для дальнейшей работы с datetime
-eventDateTimeDifference = datetime.datetime(
-    arr[0], arr[1], arr[2], arr[3], arr[4])
-
+today = isoToWeekday(datetime.datetime.today().isoweekday())
+# засунуть в рефреш на каждую минуту
+now = datetime.datetime.utcnow().isoformat()
 arr = np.asarray(getDateTime(now))
+# переводим тип turple в массив int'ов с помощью numpy для дальнейшей работы с datetime
 nowDifference = datetime.datetime(arr[0], arr[1], arr[2], arr[3], arr[4])
+print(nowDifference)
+
+# очистка файла с расписанием и парсинг актуального с pastebin
+with open('shedule.yml', 'w', encoding='utf-8') as f:
+    f.write(get('https://pastebin.com/raw/72t0egj7').text)
+with open('shedule.yml', 'r', encoding='utf-8') as f:
+    shedule = yaml.full_load(f)
+
+for Iter in shedule['Numbering']:
+    for subIter in shedule[today]:
+        if Iter == subIter and isNowBetweenTime(subIter):
+            print("True")
+        else:
+            print("False")

@@ -1,0 +1,44 @@
+Numbering: 
+  - 00.00-08.29
+  - 08.30-10.00
+  - 10.10-11.40
+  - 11.50-13.20
+  - 12.00-13.30
+  - 13.50-15.20
+  - 15.30-17.00
+  - 17.00-18.30
+  - 17.10-18.40
+  - 18.50-20.20
+  - 20.30-22.00
+  - 21.00-22.00
+
+Monday: null
+
+Tuesday: null
+
+Wednesday:
+  08.30-10.00:
+    lesson: Математический анализ (ЛЕКЦИЯ)
+    link: https://clck.ru/asqHi
+  10.10-11.40:
+    lesson: Комплексный анализ (ЛЕКЦИЯ)
+    link: https://clck.ru/asqJH
+  11.50-13.20:
+    lesson: Комплексный анализ (ПРАКТИКА)
+    link: https://clck.ru/asqJH
+  13.50-15.20:
+    lesson: Компьютерные сети (ЛЕКЦИЯ)
+    link: https://clck.ru/asqBJ
+  15.30-17.00:
+    lesson: Физика (ЛЕКЦИЯ)
+    link: https://clck.ru/asqKB
+    endTime: 17 00
+
+Thursday: null
+
+Friday: null
+
+Saturday:
+  08.30-10.00:
+    lesson: Веб-программирование (ЛЕКЦИЯ)
+    link: https://clck.ru/asqN9

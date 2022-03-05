@@ -29,11 +29,11 @@ def chromeOpenScript():
     flag = True
     while flag:
         time.sleep(0.5)
-        scanAndPress('buttons/cancelGoogle.png')
+        scanAndPress('assets/buttons/cancelGoogle.png')
         while flag:
             # универсализация под светлую\темную тему
-            scanAndPress('buttons/useWebAppLight.png', flag)
-            scanAndPress('buttons/useWebAppDark.png', flag)
+            scanAndPress('assets/buttons/useWebAppLight.png', flag)
+            scanAndPress('assets/buttons/useWebAppDark.png', flag)
             time.sleep(0.5)
 
 
@@ -41,11 +41,11 @@ def edgeOpenScript():
     flag = True
     while flag:
         time.sleep(0.5)
-        scanAndPress('buttons/cancelEdge.png')
+        scanAndPress('assets/buttons/cancelEdge.png')
         while flag:
             # универсализация под светлую\темную тему
-            scanAndPress('buttons/useWebAppLight.png', flag)
-            scanAndPress('buttons/useWebAppDark.png', flag)
+            scanAndPress('assets/buttons/useWebAppLight.png', flag)
+            scanAndPress('assets/buttons/useWebAppDark.png', flag)
             time.sleep(0.5)
 
 
@@ -53,9 +53,9 @@ def yandexOpenScript():
     flag = True
     while flag:
         time.sleep(0.5)
-        scanAndPress('buttons/cancelYandex.png')
+        scanAndPress('assets/buttons/cancelYandex.png')
         while flag:
             # универсализация под светлую\темную тему
-            scanAndPress('buttons/useWebAppLight.png', flag)
-            scanAndPress('buttons/useWebAppDark.png', flag)
+            scanAndPress('assets/buttons/useWebAppLight.png', flag)
+            scanAndPress('assets/buttons/useWebAppDark.png', flag)
             time.sleep(0.5)
