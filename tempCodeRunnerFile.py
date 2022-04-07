@@ -1,2 +1,1 @@
-
-                edgeLesson(currentLink)
+isNowBetweenTime
