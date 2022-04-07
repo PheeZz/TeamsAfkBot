@@ -28,17 +28,23 @@ Wednesday:
     link: https://clck.ru/asqJH
   13.50-15.20:
     lesson: Компьютерные сети (ЛЕКЦИЯ)
-    link: https://clck.ru/asqBJ
+    link: https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fteam%2F19%3Ahl2LBwtV-cPh72pew-Y65G_4amATAaRANHKv_MNx97c1%40thread.tacv2%2Fconversations%3FgroupId%3Dc68bb7c7-3897-46c7-9ebc-1d02bfb3e0e8%26tenantId%3D6bf462b9-ace0-435b-94e5-2bb4d5189db7&type=team&deeplinkId=6bf91e0c-9741-4bd1-bdcc-61393aaf58f6&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true
   15.30-17.00:
     lesson: Физика (ЛЕКЦИЯ)
-    link: https://clck.ru/asqKB
+    link: https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fteam%2F19%3Ahl2LBwtV-cPh72pew-Y65G_4amATAaRANHKv_MNx97c1%40thread.tacv2%2Fconversations%3FgroupId%3Dc68bb7c7-3897-46c7-9ebc-1d02bfb3e0e8%26tenantId%3D6bf462b9-ace0-435b-94e5-2bb4d5189db7&type=team&deeplinkId=6bf91e0c-9741-4bd1-bdcc-61393aaf58f6&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true
     endTime: 17 00
 
 Thursday: null
+  
 
-Friday: null
+Friday: 
+  17.10-18.40:
+    lesson: test
+    link: https://teams.microsoft.com/_#/school/conversations/%D0%9E%D0%B1%D1%89%D0%B8%D0%B9?threadId=19:Zh5dyOp14yLqjqermmAZEKkReZhJrzNXq1t8RvhuDyw1@thread.tacv2&ctx=channel
 
 Saturday:
   08.30-10.00:
     lesson: Веб-программирование (ЛЕКЦИЯ)
     link: https://clck.ru/asqN9
+
+Sunday: null

@@ -1,13 +1,13 @@
+'''
+pip install pyautogui
+pip install numpy
+'''
 from btnFind import *
+from browserPath import *
 
-import pyscreenshot as ImageGrab
-# Used to programmatically control the mouse & keyboard. (эмуляция мыши и клавиатуры)
-import pyautogui
 import numpy as np
-import cv2  # работа с изображениями
 
 import os  # запуск приложений
-import webbrowser as webbr
 
 from pprint import pp, pprint
 import yaml
@@ -17,6 +17,8 @@ import time
 import os.path
 from multiprocessing import Process
 from requests import get
+
+from ui import Ui_Dialog
 
 
 def getDateTime(date):
@@ -82,9 +84,18 @@ def isNowBetweenTime(time):
 
 def openLessonBrowser(browser, link): webbr.get(browser).open_new_tab(link)
 
-""" webbr.get('Chrome').open_new_tab('https://vk.com')
-webbr.get('Yandex').open_new_tab('https://vk.com')
-webbr.get('Edge').open_new_tab('https://vk.com') """
+
+def yandexLesson(link):
+    openLessonBrowser('Yandex', link)
+    # yandexOpenScript()
+
+
+def chromeLesson(link):
+    openLessonBrowser('Chrome', link)
+    scriptBrowser()
+
+
+setBrowserPath()  # function generate browser path if .txt file for Chrome, Yandex, MS Edge, Safari on Windows, MacOS, Linux
 
 # import app path from txt files
 with open('paths/chrome.txt', 'r') as pathFile:
@@ -109,19 +120,29 @@ today = isoToWeekday(datetime.datetime.today().isoweekday())
 # засунуть в рефреш на каждую минуту
 now = datetime.datetime.utcnow().isoformat()
 arr = np.asarray(getDateTime(now))
-# переводим тип turple в массив int'ов с помощью numpy для дальнейшей работы с datetime
+# переводим тип tuple в массив int'ов с помощью numpy для дальнейшей работы с datetime
 nowDifference = datetime.datetime(arr[0], arr[1], arr[2], arr[3], arr[4])
 print(nowDifference)
 
-# очистка файла с расписанием и парсинг актуального с pastebin
+with open('paths/pastebin.txt', 'r') as pathFile:
+    pastebin = pathFile.read()
+# clear current .yml shedule file and parse actual from pastebin
 with open('shedule.yml', 'w', encoding='utf-8') as f:
-    f.write(get('https://pastebin.com/raw/72t0egj7').text)
+    f.write(get(pastebin).text)
 with open('shedule.yml', 'r', encoding='utf-8') as f:
     shedule = yaml.full_load(f)
 
-for Iter in shedule['Numbering']:
-    for subIter in shedule[today]:
-        if Iter == subIter and isNowBetweenTime(subIter):
-            print("True")
-        else:
-            print("False")
+
+if shedule[today]:  # if not empty
+    for TimeIters in shedule['Numbering']:
+        for subIter in shedule[today]:
+            if TimeIters == subIter and isNowBetweenTime(subIter):
+                currentLink = shedule[today][TimeIters]['link']
+                print(currentLink)
+                chromeLesson(currentLink)
+                # функция, сверяющая время окончания пары с текущим временем
+
+            elif TimeIters == subIter and not isNowBetweenTime(subIter):
+                continue
+            else:
+                time.sleep(1)

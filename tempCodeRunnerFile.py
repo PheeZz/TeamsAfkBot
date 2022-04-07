@@ -1,0 +1,2 @@
+
+                edgeLesson(currentLink)
