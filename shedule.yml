@@ -13,6 +13,9 @@ Numbering:
   - 21.00-22.00
   - 00.00-23.59
   - 00.00-01.12
+  - 14.50-14.52
+  - 14.53-14.55
+  - 14.56-14.58
  
 
 
@@ -45,9 +48,16 @@ Thursday:
     link: https://teams.microsoft.com/_#/school/conversations/%D0%9E%D0%B1%D1%89%D0%B8%D0%B9?threadId=19:Zh5dyOp14yLqjqermmAZEKkReZhJrzNXq1t8RvhuDyw1@thread.tacv2&ctx=channel
 
 Friday: 
-   00.00-01.12:
-    lesson: test
+   14.50-14.52:
+    lesson: first
     link: https://teams.microsoft.com/_#/school/conversations/%D0%9E%D0%B1%D1%89%D0%B8%D0%B9?threadId=19:Zh5dyOp14yLqjqermmAZEKkReZhJrzNXq1t8RvhuDyw1@thread.tacv2&ctx=channel
+   14.53-14.55:
+    lesson: second
+    link: https://teams.microsoft.com/_#/school/conversations/%D0%9E%D0%B1%D1%89%D0%B8%D0%B9?threadId=19:Zh5dyOp14yLqjqermmAZEKkReZhJrzNXq1t8RvhuDyw1@thread.tacv2&ctx=channel
+   14.56-14.58:
+    lesson: thrird
+    link: https://teams.microsoft.com/_#/school/conversations/%D0%9E%D0%B1%D1%89%D0%B8%D0%B9?threadId=19:Zh5dyOp14yLqjqermmAZEKkReZhJrzNXq1t8RvhuDyw1@thread.tacv2&ctx=channel
+  
 
 Saturday:
   08.30-10.00:

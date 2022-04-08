@@ -2,25 +2,20 @@
 pip install pyautogui
 pip install numpy
 '''
-from asyncio.windows_events import NULL
 from btnFind import *
 from browserPath import *
 
 from random import randint
-import numpy as np
-
-import os  # запуск приложений
-
-from pprint import pp, pprint
 import yaml
-
 import datetime
 import time
 import os.path
-from multiprocessing import Process
+import webbrowser as webbr
 from requests import get
 
-from ui import Ui_Dialog
+
+def clearConsole(): return os.system(
+    'cls' if os.name in ('nt', 'dos') else 'clear')
 
 
 def getDateTime(date):
@@ -99,6 +94,26 @@ def isNowBetweenTime(time):
         return False
 
 
+def sleepUntil(endTime, browser):
+    flag = True
+    while(flag):
+        # защита от дебила, чтобы все одновременно не ливали с пары
+        if endTime == nowToDatetime():
+            time.sleep(15+randint(0, 20))
+            # если вдруг слетело активное окно хрома - открываем новое и сразу закрываем
+            openLessonBrowser(browser, 'google.com')
+            time.sleep(0.5)
+            pag.hotkey('ctrl', 'w')  # close current tab hotkey
+            pag.moveTo(500, 500)
+            time.sleep(0.5)
+            pag.click()
+            pag.hotkey('ctrl', 'w')  # close current tab hotkey
+            flag = False
+            time.sleep(40)
+        else:
+            time.sleep(30)
+
+
 def openLessonBrowser(browser, link): webbr.get(browser).open_new_tab(link)
 
 
@@ -154,38 +169,37 @@ with open('shedule.yml', 'w', encoding='utf-8') as f:
 with open('shedule.yml', 'r', encoding='utf-8') as f:
     shedule = yaml.full_load(f)
 
-today = isoToWeekday(datetime.datetime.today().isoweekday())
-print(today)
 
-
-def sleepUntil(endTime):
-    flag = True
-    while(flag):
-        # защита от дебила, чтобы все одновременно не ливали с пары
-        if endTime == nowToDatetime():
-            time.sleep(15+randint(0, 20))
-            pag.moveTo(500, 500)
-            time.sleep(0.5)
-            pag.click()
-            pag.hotkey('ctrl', 'w')  # close current tab hotkey
-            flag = False
-            time.sleep(40)
-        else:
-            time.sleep(30)
+def updateToday():
+    return isoToWeekday(datetime.datetime.today().isoweekday())
 
 
 while(True):
+    today = updateToday()
     if shedule[today]:  # if not empty
+        i = 0
         for TimeIters in shedule['Numbering']:
             for subIter in shedule[today]:
                 if TimeIters == subIter and isNowBetweenTime(subIter):
                     currentLink = shedule[today][TimeIters]['link']
+                    clearConsole()
+                    print(shedule[today][TimeIters]['lesson'])
                     print(currentLink)
                     print('Время окончания текущей пары: ', endTime(TimeIters))
                     chromeLesson(currentLink)
                     # функция, сверяющая время окончания пары с текущим временем
-                    sleepUntil(endTime(TimeIters))
+                    sleepUntil(endTime(TimeIters), 'Chrome')
                 elif TimeIters == subIter and not isNowBetweenTime(subIter):
                     continue
                 else:
-                    print('Ищу пару на сегодня...')
+                    if i == 0:
+                        print('Ищу следущую пару.')
+                        i += 1
+                    elif i == 1:
+                        print('Ищу следущую пару..')
+                        i += 1
+                    elif i == 2:
+                        print('Ищу следущую пару...')
+                        i = 0
+                        clearConsole()
+                    time.sleep(1)

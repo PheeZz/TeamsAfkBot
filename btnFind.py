@@ -2,16 +2,16 @@ import time
 import numpy as np
 import pyscreenshot as ImageGrab
 import pyautogui as pag
-import webbrowser as webbr
+
 import cv2
 
-kWidth = 1920/pag.size()[0]  # опитимизация под разные разрешения (переделать)
+kWidth = 1920/pag.size()[0]  # опитимизация под разные разрешения
 kHeight = 1080/pag.size()[1]
 # регионы для поиска кнопок на экране pyautogui
-upperBox = [0, 0, 1920, 360]
-lowerBox = [0, 600, 1920, 380]
-midBox = [0, 350, 1920, 350]
-logoBox = [0, 0, 250, 150]
+upperBox = [0, 0, int(1920*kWidth), 360]
+lowerBox = [0, int(kHeight*600), int(1920*kWidth), 380]
+midBox = [0, int(kHeight*350), int(1920*kWidth), 350]
+logoBox = [0, 0, int(kHeight*250), int(kWidth*150)]
 
 
 # function to find the button on the screen
@@ -27,8 +27,8 @@ def clickOnButton(img, box):
     x, y = getImageCoordinatesOnScreenshot(
         img, box)
     pag.moveTo(x, y)
-    time.sleep(0.25)
-    pag.click(x, y)
+    time.sleep(0.1)
+    pag.click()
 
 
 def findPattern():
