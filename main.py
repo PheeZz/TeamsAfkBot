@@ -127,7 +127,11 @@ def chromeLesson(link):
     scriptBrowser()
 
 
-    # import app path from txt files
+print('Привет, я еще немножко потуплю, прежде чем начну работать.')
+print('Привет, я еще немножко потуплю, прежде чем начну работать..')
+print('Привет, я еще немножко потуплю, прежде чем начну работать...')
+setBrowserPath()
+# import app path from txt files
 with open('paths/chrome.txt', 'r') as pathFile:
     googlePath = pathFile.read()
 
