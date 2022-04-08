@@ -1,4 +1,4 @@
-TAB_TeamsAfkBot
+
 # RU
 
 ## Как скачать?
