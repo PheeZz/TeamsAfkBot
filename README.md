@@ -1,5 +1,6 @@
-TAB_TeamsAfkBot
 # RU
+
+## на данный момент проверена работа только с темной темой teams
 
 ## Как скачать?
 Лучший вариант - заглянуть в блок *Release* справа, но если же ты рискованный - можешь качать проект прямо с main ветки :) 
@@ -20,8 +21,17 @@ P.s я бы все таки рекомендовал качать релиз
 
  1. Установить необходимые библиотеки и запустить файл main.py
  
+
+`pip install pyautogui`
+`pip install requests`
+`pip install opencv-python`
+`pip install pyYAML`
+
  2. Запустить TeamsAfkBot.exe в корневой папке, но в таком случае инициализация до запуска самого бота займет ~15 секунд (в зависимости hardware)
 
+Если что то не работает:
+ проверьте точно ли папка с ботом находится на одном диске с браузерами (windows - диск C)
+ попробуйте запустить settings.exe, это перезапишет пути к браузерам
 
 # EN
 
@@ -42,5 +52,9 @@ P.s I would still recommend downloading the release
 There are two options:
 
 1. Install the required libraries and run the main.py file 
+`pip install pyautogui`
+`pip install requests`
+`pip install opencv-python`
+`pip install pyYAML`
 
-2. Run TeamsAfkBot.exe in the root folder, but in this case, initialization before starting the bot itself will take ~ 15 seconds (depending on hardware)
+3. Run TeamsAfkBot.exe in the root folder, but in this case, initialization before starting the bot itself will take ~ 15 seconds (depending on hardware)
