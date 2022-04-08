@@ -1,8 +1,5 @@
 import time
-import numpy as np
-import pyscreenshot as ImageGrab
 import pyautogui as pag
-
 import cv2
 
 kWidth = 1920/pag.size()[0]  # опитимизация под разные разрешения

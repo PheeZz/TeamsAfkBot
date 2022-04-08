@@ -203,3 +203,6 @@ while(True):
                         i = 0
                         clearConsole()
                     time.sleep(1)
+    else:
+        print('Нет онлайн пар на сегодня.')
+        time.sleep(3600)
