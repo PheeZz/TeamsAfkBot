@@ -1,8 +1,6 @@
 import platform
 import os
-import asyncio
 from datetime import datetime
-
 
 
 def getSystem():
@@ -16,15 +14,15 @@ def getSystem():
         return 'Unknown'
 
 
-async def findPath(name, path):
+def findPath(name, path):
     for dirpath, dirname, filenames in os.walk(path):
         if name in filenames:
             return os.path.join(dirpath, name)
 
 
-async def setChromePath():
+def setChromePath():
     try:
-        googlePath = await findPath('chrome.exe', '\\')
+        googlePath = findPath('chrome.exe', '\\')
         f = open('paths/chrome.txt', 'w')
         f.write(googlePath)
         f.close()
@@ -33,9 +31,9 @@ async def setChromePath():
         print('Не найден chrome, вы можете попробовать задать путь вручную в файле paths/chrome.txt')
 
 
-async def setYandexPath():
+def setYandexPath():
     try:
-        yandexPath = await findPath('browser.exe', '\\')
+        yandexPath = findPath('browser.exe', '\\')
         f = open('paths/yandex.txt', 'w')
         f.write(yandexPath)
         f.close()
@@ -44,9 +42,9 @@ async def setYandexPath():
         print('Не найден browser.exe в папке, вы можете попробовать задать путь вручную в файле paths/yandex.txt')
 
 
-async def setMsEdgePath():
+def setMsEdgePath():
     try:
-        edgePath = await findPath('msedge.exe', '\\')
+        edgePath = findPath('msedge.exe', '\\')
         f = open('paths/msEdge.txt', 'w')
         f.write(edgePath)
         f.close()
@@ -55,7 +53,7 @@ async def setMsEdgePath():
         print('Не найден msedge.exe в папке, вы можете попробовать задать путь вручную в файле paths/msEdge.txt')
 
 
-async def setSafariPath():
+def setSafariPath():
     try:
         safariPath = findPath('safari', '\\')
         f = open('paths/safari.txt', 'w')
@@ -69,9 +67,9 @@ async def setSafariPath():
 def setBrowserPath():
     if getSystem() == 'Windows':
         startTime = datetime.now()
-        asyncio.run(setChromePath())
-        asyncio.run(setYandexPath())
-        asyncio.run(setMsEdgePath())
+        setChromePath()
+        setYandexPath()
+        setMsEdgePath()
         print(datetime.now() - startTime)
 
     elif getSystem() == 'Darwin':
@@ -83,3 +81,6 @@ def setBrowserPath():
 
     elif getSystem() == 'Unknown':
         print('Uncnown system')
+
+
+setBrowserPath()

@@ -1,9 +1,10 @@
 '''
 pip install pyautogui
-pip install numpy
+pip install requests
+pip install opencv-python
+pip install pyYAML
 '''
 from btnFind import *
-from browserPath import *
 
 from random import randint
 import yaml
@@ -130,7 +131,6 @@ def chromeLesson(link):
 print('Привет, я еще немножко потуплю, прежде чем начну работать.')
 print('Привет, я еще немножко потуплю, прежде чем начну работать..')
 print('Привет, я еще немножко потуплю, прежде чем начну работать...')
-setBrowserPath()
 # import app path from txt files
 with open('paths/chrome.txt', 'r') as pathFile:
     googlePath = pathFile.read()
@@ -152,7 +152,7 @@ try:
     webbr.register('Yandex', None, webbr.BackgroundBrowser(yandexPath))
     webbr.register('Edge', None, webbr.BackgroundBrowser(edgePath))
 except Exception as e:
-    setBrowserPath()  # function generate browser path if .txt file for Chrome, Yandex, MS Edge, Safari on Windows, MacOS, Linux
+    print(e)
 finally:
     webbr.register('Chrome', None, webbr.BackgroundBrowser(googlePath))
     webbr.register('Yandex', None, webbr.BackgroundBrowser(yandexPath))
