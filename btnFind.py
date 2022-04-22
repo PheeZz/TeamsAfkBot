@@ -1,127 +1,154 @@
 import time
 import pyautogui as pag
-import cv2
+from windowsCalculator import *
 
-kWidth = 1920/pag.size()[0]  # опитимизация под разные разрешения
-kHeight = 1080/pag.size()[1]
+
 # регионы для поиска кнопок на экране pyautogui
-upperBox = [0, 0, int(1920*kWidth), 360]
-lowerBox = [0, int(kHeight*600), int(1920*kWidth), 380]
-midBox = [0, int(kHeight*350), int(1920*kWidth), 350]
-logoBox = [0, 0, int(kHeight*250), int(kWidth*150)]
 
+def moveToCenterOfBox(currentbox):
+    pag.moveTo(currentbox[0]+currentbox[2]/2, currentbox[1]+currentbox[3]/2)
 
 # function to find the button on the screen
+
+
 def getImageCoordinatesOnScreenshot(img, box, gray=True):
     try:
         return pag.locateCenterOnScreen(img, region=box, grayscale=gray, confidence=0.9)
     except Exception as e:
-        print(e, 'Error in getImageCoordinatesOnScreenshot()')
+        time.sleep(0.5)
+        print(e, '\nError in getImageCoordinatesOnScreenshot()')
         return False
+
+
+def waitGetAllConnectButtons(link):
+    '''задержка для открытия всех окон'''
+    while(len(list(pag.locateAllOnScreen('assets/buttons/connect.png', region=fullscreen, grayscale=True, confidence=0.9))) < len(whichAppsLaunch())):
+        for opennedApp in whichAppsLaunch():
+            if opennedApp == 'Yandex':
+                check = 'Яндекс.Браузер'
+            else:
+                check = opennedApp
+            if not pag.getWindowsWithTitle(check):
+                openLessonBrowser(check, link)
+        time.sleep(10)
+        usingBoxlist = getBoxes()
+        for box in usingBoxlist:
+            pag.click(box[0]+box[2]/2, box[1]+box[3]/2)
+            pag.hotkey('ctrl', 'r')
 
 
 def clickOnButton(img, box):
     x, y = getImageCoordinatesOnScreenshot(
         img, box)
-    pag.moveTo(x, y)
-    time.sleep(0.1)
-    pag.click()
+    pag.click(x, y)
 
 
-def findPattern():
-    if(getImageCoordinatesOnScreenshot('assets/darkPattern.png', midBox, False)):
+def findPattern(currentBox):
+    if pag.pixelMatchesColor(300+currentBox[0], 400+currentBox[1], (245, 245, 245), tolerance=30):
+        return 'Light'
+    elif pag.pixelMatchesColor(300+currentBox[0], 400+currentBox[1], (20, 20, 20), tolerance=30):
         return 'Dark'
-    else:
-        return 'Light'
 
 
-def findLogo():
-    if(getImageCoordinatesOnScreenshot('assets/teamsLogoLight.png', upperBox, False)):
+def resetCoordinates(oldBox, newBox):
+    oldBox[0] = newBox[0]  # start x coordinate
+    oldBox[1] = newBox[1]  # start y coordinate
+    oldBox[2] += newBox[2]  # end x coordinate
+    oldBox[3] += newBox[3]  # end y coordinate
+    return oldBox
+
+
+def findLogo(currentBox):
+    if(getImageCoordinatesOnScreenshot('assets/teamsLogoLight.png', resetCoordinates(upperBox, currentBox), False)):
         return 'Light'
-    elif(getImageCoordinatesOnScreenshot('assets/teamsLogoDark.png', upperBox, False)):
+    elif(getImageCoordinatesOnScreenshot('assets/teamsLogoDark.png', resetCoordinates(upperBox, currentBox), False)):
         return 'Dark'
     # в случае если скипаем "использовать веб-приложение" получаем тему из фона
-    elif (getImageCoordinatesOnScreenshot('assets/teamsLogoJoined.png', logoBox, False)):
-        return findPattern()
+    elif (getImageCoordinatesOnScreenshot('assets/teamsLogoJoined.png', resetCoordinates(logoBox, currentBox), False)):
+        time.sleep(1)
+        return findPattern(currentBox)
     else:
-        return 'Error'
+        return findPattern(currentBox)
 
 
-def pressConnectButton():
+def pressConnectButton(currentBox):
     flag = True
-    time.sleep(2)
+
     while(flag):
         try:
-            clickOnButton('assets/buttons/connect.png', lowerBox)
+            time.sleep(1)
+            clickOnButton('assets/buttons/connect.png',
+                          resetCoordinates(lowerBox, currentBox))
             flag = False
         except:
-            time.sleep(0.5)
-            print('Не найдена кнопка подключения')
+            print('Не найдена кнопка подключения1')
+            moveToCenterOfBox(currentBox)
+            pag.click()
+            pag.hotkey('ctrl', 'r')  # refresh page after 5 seconds of waiting
+            time.sleep(5)
 
 
-def pressContinueButton():
+def pressContinueButton(currentBox):
     flag = True
     while(flag):
         try:
+            moveToCenterOfBox(currentBox)
+            pag.click()
+            pag.scroll(-2000)
+            time.sleep(0.5)
             clickOnButton('assets/buttons/continueNosound.png',
-                          lowerBox)
+                          resetCoordinates(lowerBox, currentBox))
             flag = False
         except:
             time.sleep(0.5)
             print('Не найдена кнопка продолжения')
 
 
-def pressConnectnowButton():
+def pressConnectnowButton(currentBox):
     flag = True
     while(flag):
         try:
-            clickOnButton('assets/buttons/connectnow.png', midBox)
+            clickOnButton('assets/buttons/connectnow.png',
+                          resetCoordinates(midBox, currentBox))
             flag = False
         except:
+            print('Не найдена кнопка подключения2')
             time.sleep(0.5)
-            print('Не найдена кнопка подключения')
 
 
-def pressButtonsForConnect(Logo):
+def pressButtonsForConnect(currentBox):
     # универсализация под светлую\темную тему
-    if (Logo == 'Light'):
-        try:
-            clickOnButton('assets/buttons/useWebAppLight.png', lowerBox)
-        except Exception as e:
-            print(e, 'Error in pressButtonsForConnect() in case of Light theme')
-        finally:
-            pass
-    elif(Logo == 'Dark'):
-        try:
-            clickOnButton('assets/buttons/useWebAppDark.png', lowerBox)
-        except Exception as e:
-            print(e, 'Error in pressButtonsForConnect() in case of Dark theme')
-        finally:
-            pass
-    pressConnectButton()
-    pressContinueButton()
-    pressConnectnowButton()
+
+    pressConnectButton(currentBox)
+    pressContinueButton(currentBox)
+    pressConnectnowButton(currentBox)
 
 
-def pressCancelButton():
+def pressCancelButton(currentBox):
     try:
-        clickOnButton('assets/buttons/cancelGoogle.png', upperBox)
+        clickOnButton('assets/buttons/cancelGoogle.png',
+                      resetCoordinates(upperBox, currentBox))
     except:
-        pass
-    try:
-        clickOnButton('assets/buttons/cancelEdge.png', upperBox)
-    except:
-        pass
-    try:
-        clickOnButton('assets/buttons/cancelYandex.png', upperBox)
-    except:
-        pass
-
-
-def scriptBrowser():
-    while (findLogo() == 'Error'):
         time.sleep(0.5)
-    Logo = findLogo()
+
+    try:
+        clickOnButton('assets/buttons/cancelEdge.png',
+                      resetCoordinates(upperBox, currentBox))
+    except:
+        time.sleep(0.5)
+
+    try:
+        clickOnButton('assets/buttons/cancelYandex.png',
+                      resetCoordinates(upperBox, currentBox))
+    except:
+        time.sleep(0.5)
+
+
+def scriptBrowser(currentBox):
+    while(findLogo(currentBox) == False):
+        time.sleep(0.5)
+        print('Не найден логотип')
+    Theme = findPattern(currentBox)
     # нажатие на "отмена" при предложении перейти в приложение
-    pressCancelButton()
-    pressButtonsForConnect(Logo)
+    pressCancelButton(currentBox)
+    pressButtonsForConnect(currentBox)

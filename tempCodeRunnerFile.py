@@ -1,1 +1,1 @@
-isNowBetweenTime
+WindowsWithTitle(localizeToRU('Edge')))

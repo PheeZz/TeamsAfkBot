@@ -122,3 +122,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.exe
+
+dist/*
+build/*
+test.py
+userdata/paths*
+userdata/settings*

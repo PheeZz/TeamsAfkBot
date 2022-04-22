@@ -23,45 +23,61 @@ def findPath(name, path):
 def setChromePath():
     try:
         googlePath = findPath('chrome.exe', '\\')
-        f = open('paths/chrome.txt', 'w')
-        f.write(googlePath)
+        addThis = f'Google: {googlePath}\n'
+        f = open('userData/paths.yaml', 'a')
+        f.write(addThis)
         f.close()
     except Exception as e:
         print(e)
-        print('Не найден chrome, вы можете попробовать задать путь вручную в файле paths/chrome.txt')
+        print('Не найден chrome, вы можете попробовать задать путь вручную в файле userData/paths.yaml')
 
 
 def setYandexPath():
     try:
         yandexPath = findPath('browser.exe', '\\')
-        f = open('paths/yandex.txt', 'w')
-        f.write(yandexPath)
+        addThis = f'Yandex: {yandexPath}\n'
+        f = open('userData/paths.yaml', 'a')
+        f.write(addThis)
         f.close()
     except Exception as e:
         print(e)
-        print('Не найден browser.exe в папке, вы можете попробовать задать путь вручную в файле paths/yandex.txt')
+        print('Не найден browser.exe в папке, вы можете попробовать задать путь вручную в файле userData/paths.yaml')
 
 
-def setMsEdgePath():
+def setEdgePath():
     try:
         edgePath = findPath('msedge.exe', '\\')
-        f = open('paths/msEdge.txt', 'w')
-        f.write(edgePath)
+        addThis = f'Edge: {edgePath}\n'
+        f = open('userData/paths.yaml', 'a')
+        f.write(addThis)
         f.close()
     except Exception as e:
         print(e)
-        print('Не найден msedge.exe в папке, вы можете попробовать задать путь вручную в файле paths/msEdge.txt')
+        print('Не найден msedge.exe в папке, вы можете попробовать задать путь вручную в файле userData/paths.yaml')
 
 
 def setSafariPath():
     try:
-        safariPath = findPath('safari', '\\')
-        f = open('paths/safari.txt', 'w')
-        f.write(safariPath)
+        safariPath = findPath('safari.exe', '\\')
+        addThis = f'safariPath: {safariPath}\n'
+        f = open('userData/paths.yaml', 'a')
+        f.write(addThis)
         f.close()
     except Exception as e:
         print(e)
-        print('Не найден safari, вы можете попробовать задать путь вручную в файле paths/safari.txt')
+        print('Не найден safari, вы можете попробовать задать путь вручную в файле userData/paths.yaml')
+
+
+def setTeamsPath():
+    try:
+        teamsFile = "\\AppData\\Local\\Microsoft\\Teams\\Update.exe"
+        addThis = f'Teams: \\Users\\{os.getlogin()}{teamsFile}\n'
+        f = open('userData/paths.yaml', 'a')
+        f.write(addThis)
+        f.close()
+    except Exception as e:
+        print(e)
+        print("Не найден Teams/Update.exe, вы можете попробовать задать путь вручную в файле userData/paths.yaml")
 
 
 def setBrowserPath():
@@ -69,7 +85,8 @@ def setBrowserPath():
         startTime = datetime.now()
         setChromePath()
         setYandexPath()
-        setMsEdgePath()
+        setEdgePath()
+        setTeamsPath()
         print(datetime.now() - startTime)
 
     elif getSystem() == 'Darwin':
@@ -81,6 +98,3 @@ def setBrowserPath():
 
     elif getSystem() == 'Unknown':
         print('Uncnown system')
-
-
-setBrowserPath()
