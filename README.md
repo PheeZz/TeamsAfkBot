@@ -1,11 +1,13 @@
 # RU
 
-## на данный момент проверена работа только с темной темой teams
+## на данный момент проверена работа только с темной темой teams, браузерами: Google Chrome, Yandex Browser, MS Edge
 
 ## Как скачать?
 Лучший вариант - заглянуть в блок *Release* справа, но если же ты рискованный - можешь качать проект прямо с main ветки :) 
-
 P.s я бы все таки рекомендовал качать релиз
+
+## Если необходимо - смените ссылку на файл с расписанием в файле /userData/pastebin.txt
+
 ## Как работает этот бот?
 
  1. Происходит парсинг расписания с pastebin
@@ -19,13 +21,12 @@ P.s я бы все таки рекомендовал качать релиз
 ## Как запустить бота?
 Есть два варианта:
 
- 1. Установить необходимые библиотеки и запустить файл main.py
- 
-
-`pip install pyautogui`
-`pip install requests`
-`pip install opencv-python`
-`pip install pyYAML`
+ 1. Установить необходимые библиотеки и запустить файл main.py<br/>
+`pip install pyautogui`<br/>
+`pip install requests`<br/>
+`pip install opencv-python`<br/>
+`pip install pyYAML`<br/>
+`pip install pygetwindow`<br/>
 
  2. Запустить TeamsAfkBot.exe в корневой папке, но в таком случае инициализация до запуска самого бота займет ~15 секунд (в зависимости hardware)
 
@@ -38,6 +39,9 @@ P.s я бы все таки рекомендовал качать релиз
 ## How to download?
 The best option is to look into the *Release* block on the right, but if you are risky, you can download the project directly from the main branch :)
 P.s I would still recommend downloading the release
+
+## If necessary, change the link to the file in the usual file /userData/pastebin.txt
+
 ## How does this bot work?
 
 1. The schedule is parsed from pastebin
@@ -51,10 +55,11 @@ P.s I would still recommend downloading the release
 ## How to start the bot?
 There are two options:
 
-1. Install the required libraries and run the main.py file 
-`pip install pyautogui`
-`pip install requests`
-`pip install opencv-python`
-`pip install pyYAML`
+1. Install the required libraries and run the main.py file<br/>
+`pip install pyautogui`<br/>
+`pip install requests`<br/>
+`pip install opencv-python`<br/>
+`pip install pyYAML`<br/>
+`pip install pygetwindow`<br/>
 
 3. Run TeamsAfkBot.exe in the root folder, but in this case, initialization before starting the bot itself will take ~ 15 seconds (depending on hardware)
