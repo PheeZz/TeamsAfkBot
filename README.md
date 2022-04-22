@@ -6,7 +6,7 @@
 Лучший вариант - заглянуть в блок *Release* справа, но если же ты рискованный - можешь качать проект прямо с main ветки :) 
 P.s я бы все таки рекомендовал качать релиз
 
-## Если необходимо - смените ссылку на файл с расписанием в файле /userData/pastebin.txt
+## Если необходимо - смените ссылку на файл с расписанием в файле /paths/pastebin.txt
 
 ## Как работает этот бот?
 
@@ -40,7 +40,7 @@ P.s я бы все таки рекомендовал качать релиз
 The best option is to look into the *Release* block on the right, but if you are risky, you can download the project directly from the main branch :)
 P.s I would still recommend downloading the release
 
-## If necessary, change the link to the file in the usual file /userData/pastebin.txt
+## If necessary, change the link to the file in the usual file /paths/pastebin.txt
 
 ## How does this bot work?
 
