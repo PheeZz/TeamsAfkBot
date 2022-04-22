@@ -130,3 +130,4 @@ build/*
 test.py
 userdata/paths*
 userdata/settings*
+.vscode/
