@@ -27,7 +27,7 @@ P.s я бы все таки рекомендовал качать релиз
 `pip install opencv-python`\
 `pip install pyYAML`\
 `pip install pygetwindow`\
-`pip install pillow`\
+`pip install pillow`
 
  2. Запустить TeamsAfkBot.exe в корневой папке, но в таком случае инициализация до запуска самого бота займет ~15 секунд (в зависимости hardware)
 
@@ -59,6 +59,6 @@ There are two options:
 `pip install opencv-python`\
 `pip install pyYAML`\
 `pip install pygetwindow`\
-`pip install pillow`\
+`pip install pillow`
 
 3. Run TeamsAfkBot.exe in the root folder, but in this case, initialization before starting the bot itself will take ~ 15 seconds (depending on hardware)
