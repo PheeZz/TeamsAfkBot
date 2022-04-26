@@ -22,10 +22,12 @@ P.s я бы все таки рекомендовал качать релиз
  1. Установить необходимые библиотеки и запустить файл main.py
  
 
-`pip install pyautogui`
-`pip install requests`
-`pip install opencv-python`
-`pip install pyYAML`
+`pip install pyautogui`\
+`pip install requests`\
+`pip install opencv-python`\
+`pip install pyYAML`\
+`pip install pygetwindow`\
+`pip install pillow`\
 
  2. Запустить TeamsAfkBot.exe в корневой папке, но в таком случае инициализация до запуска самого бота займет ~15 секунд (в зависимости hardware)
 
@@ -52,9 +54,11 @@ P.s I would still recommend downloading the release
 There are two options:
 
 1. Install the required libraries and run the main.py file 
-`pip install pyautogui`
-`pip install requests`
-`pip install opencv-python`
-`pip install pyYAML`
+`pip install pyautogui`\
+`pip install requests`\
+`pip install opencv-python`\
+`pip install pyYAML`\
+`pip install pygetwindow`\
+`pip install pillow`\
 
 3. Run TeamsAfkBot.exe in the root folder, but in this case, initialization before starting the bot itself will take ~ 15 seconds (depending on hardware)
