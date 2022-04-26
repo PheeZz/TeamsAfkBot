@@ -51,6 +51,7 @@ P.s I would still recommend downloading the release
 There are two options:
 
 1. Install the required libraries and run the main.py file 
+
 `pip install pyautogui`\
 `pip install requests`\
 `pip install opencv-python`\
