@@ -11,15 +11,33 @@ Numbering:
   - 17.10-18.40
   - 18.50-20.20
   - 20.30-22.00
-  - 21.00-22.30
+  - 21.20-21.26
+  - 21.27-21.30
+  - 21.32-21.45
 
 
 Monday: 
   18.50-20.20:
     lesson: Дискретная математика для программистов (ЛЕКЦИЯ)
-    link: https://clck.ru/asqEG
+    link: https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fteam%2F19%3AC-8htu1ig83vg4u7Sa8RzwTXEFUH0beL59yhMukRQwM1%40thread.tacv2%2Fconversations%3FgroupId%3D690a5192-f205-4025-b8d0-5195929b1829%26tenantId%3D6bf462b9-ace0-435b-94e5-2bb4d5189db7&type=team&deeplinkId=becf2f5e-2de7-4ec3-b72d-34bbb530dc7b&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true
 
-Tuesday: null
+Tuesday: 
+
+  21.20-21.26:
+    lesson: Математический анализ (ЛЕКЦИЯ)
+    link: https://teams.microsoft.com/l/team/19%3aZh5dyOp14yLqjqermmAZEKkReZhJrzNXq1t8RvhuDyw1%40thread.tacv2/conversations?groupId=78027f3e-7e5a-4ac3-81a7-e8f338abde5a&tenantId=6bf462b9-ace0-435b-94e5-2bb4d5189db7
+
+  21.32-21.45:
+    lesson: Комплексный анализ (ЛЕКЦИЯ)
+    link: https://teams.microsoft.com/l/team/19%3aZh5dyOp14yLqjqermmAZEKkReZhJrzNXq1t8RvhuDyw1%40thread.tacv2/conversations?groupId=78027f3e-7e5a-4ac3-81a7-e8f338abde5a&tenantId=6bf462b9-ace0-435b-94e5-2bb4d5189db7
+
+  11.50-13.20:
+    lesson: Комплексный анализ (ПРАКТИКА)
+    link: https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fteam%2F19%3ARbURWPWyR7MKqCnNl6Ldg2I1-8xJARvRMUQcMnpaoKk1%40thread.tacv2%2Fconversations%3FgroupId%3D05184a54-ca3e-44cd-b276-62f8ebb58ec1%26tenantId%3D6bf462b9-ace0-435b-94e5-2bb4d5189db7&type=team&deeplinkId=083469b7-676b-4b7d-810e-475520d4b010&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true
+
+  13.50-15.20:
+    lesson: Компьютерные сети (ЛЕКЦИЯ)
+    link: https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fteam%2F19%3Ahl2LBwtV-cPh72pew-Y65G_4amATAaRANHKv_MNx97c1%40thread.tacv2%2Fconversations%3FgroupId%3Dc68bb7c7-3897-46c7-9ebc-1d02bfb3e0e8%26tenantId%3D6bf462b9-ace0-435b-94e5-2bb4d5189db7&type=team&deeplinkId=6bf91e0c-9741-4bd1-bdcc-61393aaf58f6&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true
 
 Wednesday:
 
@@ -53,4 +71,4 @@ Saturday:
     lesson: Веб-программирование (ЛЕКЦИЯ)
     link: https://clck.ru/asqN9
 
-Sunday: null
+Sunday: null

@@ -33,8 +33,16 @@ def waitGetAllConnectButtons(link):
         time.sleep(10)
         usingBoxlist = getBoxes()
         for box in usingBoxlist:
-            pag.click(box[0]+box[2]/2, box[1]+box[3]/2)
+            pressCancelButton(box)
+
+        for box in usingBoxlist:
+            pag.click(box[0]+box[2]/2 + 50, box[1]+box[3]/2)
             pag.hotkey('ctrl', 'r')
+
+
+def waitGetAllCancelButtons():
+    while(len(list(pag.locateAllOnScreen('assets/buttons/cancelEdge.png', region=fullscreen, grayscale=True, confidence=0.9)))+len(list(pag.locateAllOnScreen('assets/buttons/cancelYandex.png', region=fullscreen, grayscale=True, confidence=0.9)))+len(list(pag.locateAllOnScreen('assets/buttons/cancelGoogle.png', region=fullscreen, grayscale=True, confidence=0.9))) < len(whichAppsLaunch())):
+        time.sleep(1)
 
 
 def clickOnButton(img, box):
@@ -104,6 +112,32 @@ def pressContinueButton(currentBox):
             print('Не найдена кнопка продолжения')
 
 
+def pressCancelButtons(currentBox):
+    try:
+        clickOnButton('assets/buttons/cancelEdge.png',
+                      resetCoordinates(upperBox, currentBox))
+    except:
+        pass
+    try:
+        clickOnButton('assets/buttons/cancelYandex.png',
+                      resetCoordinates(upperBox, currentBox))
+    except:
+        pass
+    try:
+        clickOnButton('assets/buttons/cancelGoogle.png',
+                      resetCoordinates(upperBox, currentBox))
+    except:
+        pass
+
+    time.sleep(0.5)
+    try:
+        pag.scroll(-2000)
+        clickOnButton('assets/buttons/useWebAppLight.png',
+                      resetCoordinates(lowerBox, currentBox))
+    except:
+        pass
+
+
 def pressConnectnowButton(currentBox):
     flag = True
     while(flag):
@@ -129,19 +163,26 @@ def pressCancelButton(currentBox):
         clickOnButton('assets/buttons/cancelGoogle.png',
                       resetCoordinates(upperBox, currentBox))
     except:
-        time.sleep(0.5)
+        time.sleep(0.2)
 
     try:
         clickOnButton('assets/buttons/cancelEdge.png',
                       resetCoordinates(upperBox, currentBox))
     except:
-        time.sleep(0.5)
+        time.sleep(0.2)
 
     try:
         clickOnButton('assets/buttons/cancelYandex.png',
                       resetCoordinates(upperBox, currentBox))
     except:
-        time.sleep(0.5)
+        time.sleep(0.2)
+
+    try:
+        pag.scroll(-2000)
+        clickOnButton('assets/buttons/useWebApp.png',
+                      resetCoordinates(lowerBox, currentBox))
+    except:
+        pass
 
 
 def scriptBrowser(currentBox):

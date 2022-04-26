@@ -4,6 +4,7 @@ pip install requests
 pip install opencv-python
 pip install pyYAML
 pip install pygetwindow
+pip install pillow
 '''
 from time import sleep
 from browserPath import *
@@ -74,14 +75,14 @@ def waitAnimate(index):
     if index == 0:
         print('Ищу следущую пару.')
         index += 1
-        time.sleep(0.5)
+        time.sleep(0.2)
     elif index == 1:
         print('Ищу следущую пару..')
         index += 1
-        time.sleep(0.5)
+        time.sleep(0.2)
     elif index == 2:
         print('Ищу следущую пару...')
-        time.sleep(0.5)
+        time.sleep(0.2)
         clearConsole()
         index = 0
     return index
